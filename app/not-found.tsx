@@ -1,0 +1,1 @@
+export default function NotFound(){return <main className="container"><section className="empty" style={{minHeight:'80vh'}}><a className="brand" href="/">нейрон<span className="period">.</span></a><h1>Материал не найден</h1><p>Возможно, публикация удалена или срок демосессии завершился.</p><a className="primary" href="/">Вернуться в ленту</a></section></main>}

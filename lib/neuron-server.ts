@@ -1,0 +1,3 @@
+import { env } from 'cloudflare:workers';
+export function neuronConfig(){const e=env as unknown as Record<string,string|undefined>;return {url:e.NEURON_SUPABASE_URL||process.env.NEURON_SUPABASE_URL,key:e.NEURON_PUBLISHABLE_KEY||process.env.NEURON_PUBLISHABLE_KEY,proxy:e.NEURON_PROXY_SECRET||process.env.NEURON_PROXY_SECRET,owner:e.NEURON_OWNER_EMAIL||process.env.NEURON_OWNER_EMAIL};}
+export async function publicArticle(slug:string,demo?:string){const c=neuronConfig();if(!c.url||!c.key||!c.proxy)return null;const headers:Record<string,string>={apikey:c.key,'x-neuron-proxy':c.proxy};if(demo)headers['x-neuron-demo']=demo;const r=await fetch(c.url+'/functions/v1/neuron-api/posts/'+encodeURIComponent(slug),{headers,cache:'no-store'});if(!r.ok)return null;return r.json();}
