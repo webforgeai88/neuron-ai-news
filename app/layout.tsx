@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./portfolio.css";
+import "./theme.css";
+import {ThemeProvider} from './theme';
 
 export const metadata: Metadata = {
   title: "Нейрон — новости мира ИИ",
@@ -17,8 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
-      <body className="antialiased">{children}</body>
+    <html lang="ru" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{__html:"try{var t=localStorage.getItem('neuron-theme');document.documentElement.dataset.theme=t==='light'||t==='dark'?t:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch{}"}}/></head>
+      <body className="antialiased"><ThemeProvider>{children}</ThemeProvider></body>
     </html>
   );
 }

@@ -41,6 +41,7 @@
     "**/*.mts"
   ],
   "exclude": [
+    "outputs",
     "node_modules",
     "examples",
     "supabase/functions"
